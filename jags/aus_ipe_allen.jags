@@ -1,0 +1,65 @@
+model {
+    # Need to calculate rupture distance each time; use Haversine formula 
+    lat_source_r = lat_source * pi / 180. # Radians 
+    for (i in 1:N) {
+#        Y[i]  ~ dnorm(mu[i], tau)
+ 	# Need to calculate rupture distance each time; use Haversine formula
+#	lat_source_r[i] = lon_source * pi / 180. # Radians
+	lat_ip_r[i] = lat_ip[i] * pi / 180. # Radians
+	d_lon[i] = (lon_ip[i] - lon_source) * pi / 180.0
+	d_lat[i] = (lat_ip[i] - lat_source) * pi / 180.0
+	a[i] = sin(d_lat[i]/2) * sin(d_lat[i]/2) + cos(lat_source_r) * cos(lat_ip_r[i]) * sin(d_lon[i]/2) * sin(d_lon[i]/2)
+	#c = 2 * arctan2(sqrt(a), sqrt(1-a))
+	c[i] = 2 * arctan(sqrt(a[i])/sqrt(1-a[i])) 
+	d[i] = R*c[i]/1000 # Distance in km
+	rrup[i] = sqrt(d[i]*d[i] + dep*dep)# Rupture distance calculation
+	# Term within error function
+	erf_x[i] = (dep-vert)/(h2*sqrt(2))
+	# Approximate error function - Check to see if sufficiently accurate
+	denom[i] = (1 + a1*erf_x[i] + a2*erf_x[i]**2 + a3*erf_x[i]**3 + a4*erf_x[i]**4)**4
+	erf_approx[i] = 1/denom[i]
+	# Do log trick to get log10 from natural logarithm
+	log_term[i] = sqrt(rrup[i]**2 + rref**2)
+	log10_term[i] = log(log_term[i])/log(10)
+	# With far field correction
+#	mu[i] = c0 * mw + c1 + c2 * log10(sqrt(rrup**2 + rref**2))  + c3 * (rrup - xh) + h1*erf((dep-vert)/(h2*sqrt(2))) + h3
+	# Without far field correction
+	mu[i] = c0 * mw + c1 + c2 * log10_term[i] + h1*erf_approx[i] + h3
+#	mu[i] = c0 * mw + c1 + c2 * log10(sqrt(rrup**2 + rref**2))  + h1*erf((dep-vert)/(h2*sqrt(2))) + h3
+	mmi[i]  ~ dnorm(mu[i], tau) 
+#        mu[i] <- alpha + beta * (x[i] - x.bar)
+    }
+    
+    # Define constants
+    R = 6371e3 # Earth radius, metres
+    pi = 3.14159265359
+    c0 = 0.701948613710101
+    c1 = 4.024438345065098
+    c2 = -1.8337365978167792
+    c3 = 0.00560505289976601
+    rref = 5.0
+    xh = 100.0
+    h1 = 0.27596795987611594
+    h2 = 0.23524989953558428
+    h3 = 0.02164628547809898
+    # Fix me!!!
+    vert=1
+    # For error function approxiation
+    a1 = 0.278393
+    a2 = 0.230389
+    a3 = 0.000972
+    a4 = 0.078108
+
+    # Define priors
+    mw ~ dunif(4.0, 7.0) # Uniform magnitude prior
+    lat_source ~ dunif(-40, -30) # Source coordinate (latitude)
+    lon_source ~ dunif(130, 150) # Source coordinate (longitude)
+    dep ~ dunif(1, 20.0) # Source depth
+    # Define model ucertainty term
+    sigma = 1
+    tau = 1/(sigma*sigma)
+#    alpha ~ dnorm(0.0, 1.0E-4)
+#    beta ~ dnorm(0.0, 1.0E-4)
+#    sigma <- 1.0/sqrt(tau)
+#    tau ~ dgamma(1.0E-3, 1.0E-3)
+}

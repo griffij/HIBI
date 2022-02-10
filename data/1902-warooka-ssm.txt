@@ -1,0 +1,159 @@
+Latitude	Longitude	MMI	Location
+-35.0134	138.7318	5.0	Aldgate
+-35.2691	138.4830	6.0	Aldinga
+-34.2669	138.6304	4.0	Alma
+-34.5015	139.0449	5.0	Angaston
+-33.0494	138.4278	4.0	Appila Yarrowie
+-36.9790	141.0913	4.0	Apsley
+-34.4229	137.9155	4.0	Ardrossan
+-34.2592	137.7556	5.0	Arthurton
+-34.0263	138.6846	4.0	Auburn
+-34.3012	138.9829	4.0	Bagot Well
+-34.1443	138.4139	4.0	Balaklava
+-34.9905	138.8278	7.0	Balhannah
+-37.4821	140.0098	4.0	Beachport
+-34.3502	139.6115	4.0	Blanchetown
+-34.8192	138.9645	4.0	Blumberg
+-36.3103	140.7716	3.0	Bordertown
+-34.8633	137.4967	7.0	Brentwood
+-33.6954	138.4036	4.0	Brinkworth
+-31.9567	141.4678	3.0	Broken Hill
+-32.4617	138.1990	4.0	Bruce
+-33.3083	138.5966	3.0	Bundaleer
+-33.6700	138.9310	4.0	Burra
+-33.8647	138.0063	4.0	Bute
+-35.1165	139.0371	4.0	Callington
+-33.3049	138.7672	4.0	Canowie
+-35.7527	136.5932	4.0	Cape Borda
+-36.9430	139.6770	4.0	Cape Jaffa
+-37.5859	141.4027	3.0	Casterton
+-34.8226	138.8339	4.0	Chain of Ponds
+-34.8103	138.8090	4.0	Chetwynd
+-35.1103	138.6337	5.0	Clarendon
+-34.9240	137.0828	5.0	Corny Point
+-35.0422	138.6244	5.0	Coromandel Valley
+-33.3515	138.2088	4.0	Crystal Brook
+-34.6974	137.7111	5.0	Curramulka
+-32.7788	138.5556	4.0	Delamere
+-37.3697	141.2156	3.0	Dergholm
+-35.7356	137.9167	5.0	Dudley / Hog Bay
+-35.1032	138.7965	5.5	Echunga
+-35.0845	137.7447	4.0	Edithburgh
+-34.1753	139.0853	5.0	Eudunda
+-34.4548	138.8098	4.0	Freeling
+-34.5945	138.7482	5.0	Gawler
+-33.3617	138.3935	5.0	Georgetown
+-33.2692	138.3543	3.0	Gladstone
+-34.7951	138.6948	5.0	Golden Grove
+-35.5015	138.7818	4.0	Goolwa
+-36.7171	141.4738	2.0	Goroke
+-34.0131	137.8482	5.0	Green Plains
+-34.8247	138.8829	4.0	Gumeracha
+-33.4106	138.8931	4.0	Hallett
+-34.3568	138.6827	4.0	Hamley Bridge
+-32.5214	138.3135	4.0	Hammond
+-34.9070	138.5699	3.0	Hindmarsh
+-35.4753	138.6017	5.5	Hindmarsh Valley
+-36.7074	142.2009	3.0	Horsham
+-34.0232	138.5615	4.0	Hoyleton
+-36.1405	141.9877	4.0	Jeparit
+-35.6056	138.1063	4.0	Jervis
+-33.9650	137.7130	4.0	Kadina
+-34.3414	138.9153	5.0	Kapunda
+-36.8326	139.8486	3.0	Kingston
+-33.5860	138.3332	4.0	Koolunga
+-34.8263	138.4961	3.0	Largs Bay
+-33.1851	138.3016	5.0	Laura
+-34.9045	138.8747	4.0	Lobethal
+-36.9723	140.3685	4.0	Lucindale
+-34.6023	138.8880	4.0	Lyndoch
+-35.1730	138.8363	4.0	Macclesfield
+-34.3740	137.6730	5.0	Maitland
+-34.4380	138.5097	4.0	Mallala
+-34.9137	139.3058	5.0	Mannum
+-34.1415	138.8773	4.0	Marrabel
+-35.2152	138.5372	4.0	McLaren Vale
+-35.1799	138.7602	5.5	Meadows
+-37.8138	144.9632	0.0	Melbourne
+		5.0	Melrose
+-35.4047	138.9727	6.0	Milang
+-34.1818	142.1632	3.0	Mildura
+-37.5930	140.3484	0.0	Millicent
+-34.7711	137.5955	4.0	Minlaton
+-34.0667	137.5889	6.0	Moonta
+-34.0331	139.6701	4.0	Morgan
+-35.1243	138.5283	4.0	Morphett Vale
+-36.7253	141.3731	4.0	Mortat
+-35.0666	138.8607	4.0	Mount Barker
+-35.3491	138.6203	4.0	Mount Compass
+-37.8241	140.7798	2.0	Mount Gambier
+-33.5951	138.0838	4.0	Mundoora
+-35.1187	139.2745	4.0	Murray Bridge
+-35.0434	138.7586	4.0	Mylor
+-35.3926	138.4643	5.0	Myponga
+-35.0366	138.9129	6.0	Nairne
+-36.9550	140.7429	4.0	Narracoorte
+-33.4246	138.3040	4.0	Narridy
+-36.7397	141.9470	3.0	Natimuk
+-36.3325	141.6555	4.5	Nhill
+-35.1400	138.4897	6.0	Noarlunga
+-35.4457	138.3159	4.0	Normanville
+-34.9060	138.5966	5.0	North Adelaide
+-34.9223	138.7243	5.0	Norton's Summit
+-34.4702	138.9944	4.0	Nuriootpa
+-32.7337	138.6134	4.0	Orroroo
+-34.1519	140.3396	3.5	Overland Corner
+-34.0385	137.9026	5.0	Paskeville
+-34.6035	139.3049	4.0	Pine Hut Creek
+-34.8441	138.5008	4.0	Port Adelaide
+-32.4931	137.7683	4.0	Port Augusta
+-33.6000	137.9311	4.0	Port Broughton
+-35.5317	138.6810	6.0	Port Elliot
+-33.0215	138.0002	3.0	Port Germein
+-34.7282	135.8571	5.0	Port Lincoln
+-33.1769	138.0094	4.0	Port Pirie
+-34.4971	137.4837	6.5	Port Victoria
+-34.7784	137.8583	5.0	Port Vincent
+-34.1867	138.1497	5.0	Port Wakefield
+-35.6565	137.6393	5.0	Queenscliff
+-33.5451	138.2217	5.0	Redhill
+-34.1722	140.7411	4.0	Renmark
+-34.1572	138.7482	4.5	Riverton
+-37.1635	139.7525	4.0	Robe
+-35.0575	138.7051	5.0	Scott's Creek
+-na-	-na-	F	Sea = Young Foster
+-34.8384	138.4818	3.0	Semaphore
+-36.3894	141.0263	3.0	Serviceton
+-34.5115	138.8226	5.0	Sheoak Log
+-34.6820	138.6869	5.0	Smithfield
+-33.7829	138.2152	5.0	Snowtown
+-34.7080	139.0883	F	Springton
+-34.9096	137.7957	5.0	Stansbury
+-34.3340	138.7343	4.0	Stockport
+-35.2588	138.8898	4.0	Strathalbyn
+-32.7962	134.2084	4.0	Streaky Bay
+-34.9595	138.7309	5.0	Summertown
+-34.5252	138.9579	4.0	Tanunda
+-33.9652	141.0271	4.0	Tareena
+-34.2716	138.7713	4.0	Tarlee
+-30.8526	139.2956	4.0	Teatree Gully
+-33.1502	138.9198	4.0	Terowie
+-34.5376	139.2457	4.0	Towitta
+-34.4087	139.1274	4.0	Truro
+-34.5940	138.5131	4.0	Two Wells
+-34.6664	138.5609	4.0	Virginia
+-36.5066	142.0981	4.0	Wail
+-33.9299	137.6238	5.0	Wallaroo
+-34.9910	137.3991	7.0	Warooka
+-34.4711	138.6800	3.0	Wasleys
+-33.9626	138.6383	4.0	Watervale
+-35.3247	139.3966	4.0	Wellington East
+-34.0983	141.9178	3.0	Wentworth
+-32.7959	138.2218	4.0	Willowie
+-35.2726	138.5549	6.0	Willunga
+-33.0329	138.2710	4.0	Wirrabara
+-36.3667	140.9103	3.0	Wolseley
+-34.9516	138.8743	5.0	Woodside
+-35.4576	138.3482	6.5	Yankalilla
+-32.3787	135.5243	3.0	Yardea
+-35.0192	137.6042	6.0	Yorketown
