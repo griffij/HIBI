@@ -31,7 +31,7 @@ bayes.mod.params <- c("lon_source", "lat_source", "dep", "mw")
 
 bayes.mod.fit <- jags(data = sim.data.jags,
               parameters.to.save = bayes.mod.params, n.chains = 3,
-              n.iter = 5000, n.burnin = 1000, model.file = 'intensity1.jags')
+              n.iter = 10000, n.burnin = 1000, model.file = 'aus_ipe_allen.jags')
 
 print(bayes.mod.fit)
 
@@ -52,5 +52,5 @@ dev.off()
 
 # Dump data to file 
 df_post = do.call(rbind.data.frame, bayes.mod.fit.mcmc)
-filename = paste0('outputs/df_posterior.csv')
+filename = paste0('../outputs/df_posterior.csv')
 write.csv(df_post, filename, row.names=FALSE)

@@ -52,6 +52,9 @@ model {
 
     # Define priors
     mw ~ dunif(4.0, 7.0) # Uniform magnitude prior
+    # Gutenberg-Richter magnitude prior
+#    mw_log ~ dunif(1e-7, 1e-4)
+#    mw = log(mw_log)/log(10) * -1 # Log trick, and flip to positive numbers
     lat_source ~ dunif(-40, -30) # Source coordinate (latitude)
     lon_source ~ dunif(130, 150) # Source coordinate (longitude)
     dep ~ dunif(1, 20.0) # Source depth
