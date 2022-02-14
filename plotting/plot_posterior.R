@@ -17,6 +17,7 @@ library(dplyr)
 event = 'Beachport_1897'
 posterior_file = c('../outputs/df_posterior.csv')
 df_post = read.csv(posterior_file)
+#print(df_post)
 mmi_datafile = '../data/1897-beachport-ssm.txt'
 data = read.csv(mmi_datafile, header=TRUE, sep='\t')
 
@@ -41,6 +42,16 @@ d = density(df_post$mw)
 plot(d, main='1897 Beachport', xlab='Mw', ylab='Density')
 dev.off()
 
+figname = paste0('plots/posterior_depth_', event, '.png')
+png(figname, units="in", width=6, height=6, res=300)     
+print("Mean depth")
+print(mean(df_post$dep))
+mw_percentiles = quantile(df_post$dep, probs = c(0.025, 0.26, 0.5, 0.84, 0.975))
+print("0.025, 0.26, 0.5, 0.84, 0.975")
+print(mw_percentiles)
+d = density(df_post$dep)
+plot(d, main='1897 Beachport', xlab='Depth (km)', ylab='Density')
+dev.off()
 
 # Create 2D density grid of location
 lon_source = df_post$lon_source
