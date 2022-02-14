@@ -9,7 +9,7 @@ data = read.csv(datafile, header=TRUE, sep='\t')
 print(data)
 #lats = data$Latitude
 # Get data without NA coordinates
-data = filter(data, (data$Latitude !="-NA-") & (data$MMI !="F"))
+data = filter(data, (data$Latitude !="-NA-") & (data$MMI !="F") & (data$MMI !="L"))
 
 lat_ip = as.numeric(data$Latitude)
 lon_ip = as.numeric(data$Longitude)
