@@ -9,8 +9,21 @@ model {
 	d_lon[i] = (lon_ip[i] - lon_source) * pi / 180.0
 	d_lat[i] = (lat_ip[i] - lat_source) * pi / 180.0
 	a[i] = sin(d_lat[i]/2) * sin(d_lat[i]/2) + cos(lat_source_r) * cos(lat_ip_r[i]) * sin(d_lon[i]/2) * sin(d_lon[i]/2)
-	#c = 2 * arctan2(sqrt(a), sqrt(1-a))
-	c[i] = 2 * arctan(sqrt(a[i])/sqrt(1-a[i])) 
+	#c = 2 * arctan2(sqrt(a), sqrt(1-a)) # Fixme adjust this
+	# Need to write own definition of arctan2 to get correct quadrant
+	c[i] = ifelse((1-a[i]) > 0,
+	    2 * arctan(sqrt(a[i])/sqrt(1-a[i])),
+	    ifelse(1-a[i] < 0 && a[i] >= 0,
+	        2 * arctan(sqrt(a[i])/sqrt(1-a[i])) + pi,
+		ifelse(1-a[i] < 0 && a[i] < 0,
+		    2 * arctan(sqrt(a[i])/sqrt(1-a[i])) - pi,
+		    ifelse(1-a[i] == 0 && a[i] > 0,
+		        pi/2,
+			ifelse(1-a[i] == 0 && a[i] < 0,
+			    -1*pi/2,
+			    1e32 # Fixme here - should be undefined
+		)))))
+#	c[i] = 2 * arctan(sqrt(a[i])/sqrt(1-a[i])) 
 	d[i] = R*c[i]/1000 # Distance in km
 	rrup[i] = sqrt(d[i]*d[i] + dep*dep)# Rupture distance calculation
 	# Term within error function
@@ -42,8 +55,7 @@ model {
     h1 = 0.27596795987611594
     h2 = 0.23524989953558428
     h3 = 0.02164628547809898
-    # Fix me!!!
-    vert=1
+    vert = 7 
     # For error function approxiation
     a1 = 0.278393
     a2 = 0.230389

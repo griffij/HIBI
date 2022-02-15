@@ -6,7 +6,7 @@ library(dplyr)
 
 datafile = '../data/1897-beachport-ssm.txt'
 data = read.csv(datafile, header=TRUE, sep='\t')
-print(data)
+#print(data)
 #lats = data$Latitude
 # Get data without NA coordinates
 data = filter(data, (data$Latitude !="-NA-") & (data$MMI !="F") & (data$MMI !="L"))
@@ -31,7 +31,7 @@ bayes.mod.params <- c("lon_source", "lat_source", "dep", "mw")
 
 bayes.mod.fit <- jags(data = sim.data.jags,
               parameters.to.save = bayes.mod.params, n.chains = 3,
-              n.iter = 10000, n.burnin = 1000, model.file = 'aus_ipe_allen.jags')
+              n.iter = 5000, n.burnin = 1000, model.file = 'aus_ipe_allen.jags')
 
 print(bayes.mod.fit)
 
