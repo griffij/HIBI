@@ -13,12 +13,20 @@ library(rnaturalearthdata)
 library(ggthemes)
 library(dplyr)
 #library(rgeos)
+library(sp)
+library(raster)
+library(rgdal)
 
-event = 'Beachport_1897'
-posterior_file = c('../outputs/df_posterior.csv')
+#event = 'Beachport_1897'
+#event = 'Warooka_1902'
+event = 'Adelaide_1954'
+#posterior_file = c('../outputs/df_posterior1902-warooka.csv')
+posterior_file = c('../outputs/df_posterior_1954_Adelaide.csv') 
 df_post = read.csv(posterior_file)
 #print(df_post)
-mmi_datafile = '../data/1897-beachport-ssm.txt'
+#mmi_datafile = '../data/1897-beachport-ssm.txt'
+#mmi_datafile = '../data/1902-warooka-ssm.txt'
+mmi_datafile = '../data/1954-adelaide-nehrp.txt'
 data = read.csv(mmi_datafile, header=TRUE, sep='\t')
 
 # Get data without NA coordinates
@@ -40,7 +48,9 @@ mw_percentiles = quantile(df_post$mw, probs = c(0.025, 0.26, 0.5, 0.84, 0.975))
 print("0.025, 0.26, 0.5, 0.84, 0.975")
 print(mw_percentiles)
 d = density(df_post$mw)
-plot(d, main='1897 Beachport', xlab='Mw', ylab='Density')
+#plot(d, main='1897 Beachport', xlab='Mw', ylab='Density')
+#plot(d, main='1902 Warooka', xlab='Mw', ylab='Density')
+plot(d, main='1954 Adelaide', xlab='Mw', ylab='Density') 
 dev.off()
 
 figname = paste0('plots/posterior_depth_', event, '.png')
@@ -51,7 +61,9 @@ depth_percentiles = quantile(df_post$dep, probs = c(0.025, 0.26, 0.5, 0.84, 0.97
 print("0.025, 0.26, 0.5, 0.84, 0.975")
 print(depth_percentiles)
 d = density(df_post$dep)
-plot(d, main='1897 Beachport', xlab='Depth (km)', ylab='Density')
+#plot(d, main='1897 Beachport', xlab='Depth (km)', ylab='Density')
+#plot(d, main='1902 Warooka', xlab='Depth (km)', ylab='Density')
+plot(d, main='1954 Adelaide', xlab='Depth (km)', ylab='Density')
 dev.off()
 
 # Create 2D density grid of location
@@ -59,6 +71,14 @@ lon_source = df_post$lon_source
 lat_source = df_post$lat_source
 loc_data = data.frame(lon_source, lat_source)
 kd <- ks::kde(loc_data, gridsize=rep(100,2) , compute.cont=TRUE)
+
+# Create raster of location density
+spkde <- image2Grid(list(x = kd$eval.points[[1]], 
+                         y = kd$eval.points[[2]], 
+                         z = kd$estimate))
+r <- raster(spkde)
+writeRaster(r,'../outputs/1954_Adelaide_location.tif', overwrite=TRUE)
+
 contour_95 =with(kd, contourLines(x=eval.points[[1]], y=eval.points[[2]], 
                z=estimate, levels=cont["5%"])[[1]])
 	       
@@ -96,10 +116,13 @@ ggplot() +
   scale_colour_distiller(palette='RdYlGn', direction=-1, limits=c(0,8)) +
   labs(colour = "Intensity") +
 #  geom_sf(data = world,  fill=alpha("lightgrey", 0), color="black", lwd=0.3) +
-  coord_sf(xlim=c(139,142), ylim=c(-38.5,-35.5)) +
+#  coord_sf(xlim=c(139,142), ylim=c(-38.5,-35.5)) +
+  coord_sf(xlim=c(135,140), ylim=c(-37.5,-33.)) +
   xlab('Longitude') +
   ylab('Latitude') +
-  ggtitle('1897 Beachport') +
+#  ggtitle('1897 Beachport') +
+#  ggtitle('1902 Warooka') +
+  ggtitle('1954 Adelaide') +   
   theme(plot.title = element_text(hjust = 0.5)) +
   theme_bw()
 

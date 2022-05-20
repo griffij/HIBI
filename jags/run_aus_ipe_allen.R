@@ -4,19 +4,28 @@ library(R2jags)
 library(lattice)
 library(dplyr)
 
-datafile = '../data/1897-beachport-ssm.txt'
+# Parameter file defines range of prior distributions, i.e.,
+# the bounds of the parameter space
+paramfile = '../params/1897-beachport-params.txt'
+
+#datafile = '../data/1897-beachport-ssm.txt'
+#datafile = '../data/1902-warooka-ssm.txt'
+datafile = '../data/1954-adelaide-nehrp.txt' 
+#name = '1902_warooka'
+name = '1954_Adelaide'
 data = read.csv(datafile, header=TRUE, sep='\t')
-#print(data)
+print(data)
 #lats = data$Latitude
 # Get data without NA coordinates
-data = filter(data, (data$Latitude !="-NA-") & (data$MMI !="F") & (data$MMI !="L"))
+data = filter(data, (data$Latitude !="") & (data$Latitude !="-NA-") & (data$Latitude !="-na-") &
+     (data$MMI !="F") & (data$MMI !="L"))
 
 lat_ip = as.numeric(data$Latitude)
 lon_ip = as.numeric(data$Longitude)
 mmi = as.numeric(data$MMI)
-#print(lat_ip)
-#print(lon_ip)
-#print(mmi)
+print(lat_ip)
+print(lon_ip)
+print(mmi)
 N = length(mmi)
 print(N)
 sim.data.jags = list("mmi", "lon_ip", "lat_ip", "N")
@@ -52,5 +61,5 @@ dev.off()
 
 # Dump data to file 
 df_post = do.call(rbind.data.frame, bayes.mod.fit.mcmc)
-filename = paste0('../outputs/df_posterior.csv')
+filename = paste0('../outputs/df_posterior_', name, '.csv')
 write.csv(df_post, filename, row.names=FALSE)
