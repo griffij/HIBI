@@ -90,6 +90,21 @@ contour_50 = with(kd, contourLines(x=eval.points[[1]], y=eval.points[[2]],
 	   z=estimate, levels=cont["50%"])[[1]])
 contour_50 = data.frame(contour_50)   
 
+# Create shapefile of percentile contours
+pts_sf <- st_as_sf(contour_95, coords = c("x", "y"), crs = 4326)
+l95 <- pts_sf %>% st_coordinates() %>% st_linestring()
+pts_sf <- st_as_sf(contour_50, coords = c("x", "y"), crs = 4326)
+l50 <- pts_sf %>% st_coordinates() %>% st_linestring()
+pts_sf <- st_as_sf(contour_25, coords = c("x", "y"), crs = 4326)
+l25 <- pts_sf %>% st_coordinates() %>% st_linestring() 
+
+l = st_sfc(l25,l50,l95)
+lsf = st_sf(l, crs = 4326)
+lsf$percentile=c(25,50,95)
+# Write to shapefile
+st_write(lsf, '../outputs/shp/Adelaide1954_posterior.shp', driver = "ESRI Shapefile", append=FALSE) 
+
+# Now do our own plotting
 world <- ne_countries(country='australia', scale = "large", returnclass = "sf")
 
 figname = paste0('plots/posterior_location_', event, '.png')
