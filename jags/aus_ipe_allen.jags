@@ -39,7 +39,7 @@ model {
 	# Without far field correction
 	mu[i] = c0 * mw + c1 + c2 * log10_term[i] + h1*erf_approx[i] + h3
 #	mu[i] = c0 * mw + c1 + c2 * log10(sqrt(rrup**2 + rref**2))  + h1*erf((dep-vert)/(h2*sqrt(2))) + h3
-	mmi[i]  ~ dnorm(mu[i], tau) 
+	mmi[i]  ~ dnorm(mu[i], tau/weights[i]) 
 #        mu[i] <- alpha + beta * (x[i] - x.bar)
     }
     
@@ -67,8 +67,12 @@ model {
     # Gutenberg-Richter magnitude prior
     mw_log ~ dunif(1e-7, 1e-4)
     mw = log(mw_log)/log(10) * -1 # Log trick, and flip to positive numbers
-    lat_source ~ dunif(-40, -30) # Source coordinate (latitude)
-    lon_source ~ dunif(130, 150) # Source coordinate (longitude)
+#   Adelaide
+#    lat_source ~ dunif(-40, -30) # Source coordinate (latitude)
+#    lon_source ~ dunif(130, 150) # Source coordinate (longitude)
+#   QLD
+    lat_source ~ dunif(-30, -20) # Source coordinate (latitude)
+    lon_source ~ dunif(145, 155) # Source coordinate (longitude) 
     dep ~ dunif(1, 20.0) # Source depth
     # Define model ucertainty term
     sigma = 1
